@@ -19,6 +19,7 @@
             android:layout_height="70dp"
             android:layout_centerInParent="true"
             android:id="@+id/centerImage"
-            android:src="@drawable/moon"/>
+            android:src="@drawable/moon"
+            />
     </com.skyfishjy.library.RippleBackground>
 </androidx.constraintlayout.widget.ConstraintLayout>
