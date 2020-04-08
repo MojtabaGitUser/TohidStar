@@ -1,52 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_centerInParent="true"
-    style="@style/AppTheme_1"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="600dp">
-    <EditText
-        android:layout_margin="16dp"
-        android:id="@+id/first_name_dialog_foreman_fragment"
-        android:hint="@string/first_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_margin="16dp"
-        android:id="@+id/last_name_dialog_foreman_fragment"
-        android:hint="@string/last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_margin="16dp"
-        android:id="@+id/mobile_number_dialog_foreman_fragment"
-        android:hint="@string/mobile_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_margin="16dp"
-        android:id="@+id/personal_code_dialog_foreman_fragment"
-        android:hint="@string/personal_code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="ir.honarmandpisheh.tohidstar.main.ui.foreman.ForemanViewModel" />
+    </data>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/ok_dialog_foreman_fragment"
-            android:text="@string/ok"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/cancel_dialog_foreman_fragment"
-            android:text="@string/cancel"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+        style="@style/AppTheme_1"
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="600dp">
+        <LinearLayout
+            android:paddingRight="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                app:hintAnimationEnabled="false"
+                android:padding="0dp"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:error="@{vm.errorFirstName}">
+
+                <EditText
+                    app:cleanForm='@{!vm.errorFirstName.equals("")}'
+                    android:id="@+id/first_name_dialog_foreman_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:digits="@string/alphabet"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    android:text="@={vm.model.firstName}"
+                     />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="0dp"
+                android:padding="0dp"
+                app:error="@{vm.errorLastName}"
+                app:errorEnabled="true"
+                app:hintAnimationEnabled="false">
+
+                <EditText
+                    app:cleanForm='@{!vm.errorLastName.equals("")}'
+                    android:id="@+id/last_name_dialog_foreman_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:digits="@string/alphabet"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    android:text="@={vm.model.lastName}"
+                     />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:hintAnimationEnabled="false"
+                android:padding="0dp"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:error="@{vm.errorMobileNumber}">
+                <EditText
+                    app:cleanForm='@{!vm.errorMobileNumber.equals("")}'
+                    android:text="@={vm.model.mobileNumber}"
+                    android:inputType="number"
+                    android:layout_margin="0dp"
+                    android:id="@+id/mobile_number_dialog_foreman_fragment"
+                    android:hint="@string/mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:hintAnimationEnabled="false"
+                android:padding="0dp"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:error="@{vm.errorPersonalCode}">
+                <EditText
+                    app:cleanForm='@{!vm.errorPersonalCode.equals("")}'
+                    android:text="@={vm.model.personalCode}"
+                    android:inputType="number"
+                    android:layout_margin="0dp"
+                    android:id="@+id/personal_code_dialog_foreman_fragment"
+                    android:hint="@string/personal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+
+                android:layout_margin="20dp"
+                android:id="@+id/occupation_dialog_foreman_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingRight="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/ok_dialog_foreman_fragment"
+                android:text="@string/ok"
+                android:onClick="@{()->vm.addForeman() }"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/cancel_dialog_foreman_fragment"
+                android:text="@string/cancel"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>
+
+
+
+
+
+
+
+
+</layout>
+
+
+

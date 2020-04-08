@@ -10,13 +10,14 @@
             type="ir.honarmandpisheh.tohidstar.models.model.Person" />
 
         <variable
-            name="clickListener"
-            type="ir.honarmandpisheh.tohidstar.main.ui.foreman.CustomClickListener" />
+            name="longClick"
+            type="ir.honarmandpisheh.tohidstar.main.ui.foreman.CustomInterface.LongClick" />
 
     </data>
 
 
     <LinearLayout
+
         android:id="@+id/linear_list_card_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,6 @@
 
 
         <androidx.cardview.widget.CardView
-
             android:id="@+id/cardView_list_card_item"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -39,24 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".7"
-                    android:gravity="right|center">
-
-                    <ImageView
-
-                        android:id="@+id/delete_item_list_card_item"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/minus_card_view"
-                        android:onClick="@{()-> clickListener.itemDeleted(model)}"
-                        android:src="@drawable/fab_minus" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,6 +72,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:text="@{model.personalCode}"
                         android:id="@+id/personalCode_list_card_item"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -97,6 +80,7 @@
                         android:gravity="center" />
 
                     <TextView
+                        android:text="@{model.mobileNumber}"
                         android:id="@+id/mobileNumber_list_card_item"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"

@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
+        <variable
+            name="vm"
+            type="ir.honarmandpisheh.tohidstar.main.ui.foreman.ForemanViewModel" />
 <variable
     name="adapter"
     type="ir.honarmandpisheh.tohidstar.main.ui.foreman.AdapterForeman" />

@@ -1,29 +1,17 @@
 package ir.honarmandpisheh.tohidstar.main.ui.foreman;
 
-import android.content.Context;
-import android.database.Observable;
-import android.net.sip.SipSession;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import ir.honarmandpisheh.tohidstar.BR;
 import ir.honarmandpisheh.tohidstar.R;
@@ -32,11 +20,13 @@ import ir.honarmandpisheh.tohidstar.models.model.Person;
 
 public class AdapterForeman extends RecyclerView.Adapter<AdapterForeman.ViewHolder> {
     private List<Person> personList;
-    private CustomClickListener getItem;
+    private CustomInterface.LongClick longClick;
 
-    public void setInterfaceItem(CustomClickListener getItem) {
-        this.getItem = getItem;
+    public void setLongClick(CustomInterface.LongClick longClick) {
+        this.longClick = longClick;
     }
+
+
 
     public AdapterForeman(List<Person> personList) {
 
@@ -62,7 +52,7 @@ public class AdapterForeman extends RecyclerView.Adapter<AdapterForeman.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.bind(personList.get(position));
-        holder.itemBinding.setClickListener(getItem);
+        holder.itemBinding.setLongClick(longClick);
 
     }
 
@@ -80,6 +70,15 @@ public class AdapterForeman extends RecyclerView.Adapter<AdapterForeman.ViewHold
         public ViewHolder(@NonNull ListCardItemBinding itemView) {
             super(itemView.getRoot());
             this.itemBinding=itemView;
+            this.itemBinding.cardViewListCardItem.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    longClick.onLongClick(getAdapterPosition(),personList.get(getAdapterPosition()));
+                    return true;
+                }
+            });
+
 
         }
         public void bind(Object obj){
